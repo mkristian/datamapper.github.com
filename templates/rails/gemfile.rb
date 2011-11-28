@@ -3,7 +3,7 @@
 DATAMAPPER = '#{DATAMAPPER}'
 RSPEC      = '#{RSPEC}'
 
-database = options[:database]
+database = options[:database].sub(/jdbc/, '')
 database = 'postgres' if database == 'postgresql'
 database = 'sqlite'   if database == 'sqlite3'
 
@@ -12,7 +12,7 @@ create_file 'Gemfile' do
 <<-GEMFILE
 source 'http://rubygems.org'
 
-RAILS_VERSION = '~> 3.1.1'
+RAILS_VERSION = '#{Rails::VERSION::STRING}'
 DM_VERSION    = '~> 1.2.0'
 
 gem 'activesupport',      RAILS_VERSION, :require => 'active_support'
